@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav class="topnav">
-            <div class="logo">LOGO</div>
+            <div class="logo" @click="toggleMenu">LOGO</div>
             <ul class="menu">
                 <li>菜单1</li>
                 <li>菜单2</li>
@@ -10,10 +10,16 @@
     </div>
 </template>
 <script lang="ts">
-// import { reactive } from 'vue'
-// const state = reactive({});
-export default {
+import { inject, Ref } from "vue";
 
+export default {
+    setup() {
+        const menuVisible = inject<Ref<boolean>>('xxx');
+        const toggleMenu = () => {
+            menuVisible.value = !menuVisible.value;
+        }
+        return { toggleMenu };
+    }
 }
 
 </script>
